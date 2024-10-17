@@ -1,25 +1,29 @@
 import React, {useState} from 'react'
-import {Routes, Route, Navigate, Link} from 'react-router-dom'
+import {Routes, Route, Navigate, NavLink, Link} from 'react-router-dom'
 import {TailSpin} from 'react-loader-spinner'
 import {useNavigate} from "react-router"
 import {GET} from '../../utils/api'
 import {removeFromLocalStorage} from '../../utils/storageHandler'
 import {useMessageOutlet} from '../../hooks/messageOutlet'
 import {MessageOutlet} from '../../components/messageOutlet'
+import Support from './support/support'
+import Configure from './configure/configure'
+import Main from './main/main'
+import Metrics from './metrics/metrics'
+import Services from './services/services'
 
 const Navbar = () => {
     return (
         <ul className="nav">
-            <li className="dashboard-link"><Link to="page_1">Page 1</Link></li>
-            <li className="dashboard-link"><Link to="page_2">Page 2</Link></li>
-            <li className="dashboard-link"><Link to="page_3">Page 3</Link></li>
-            <li className="dashboard-link"><Link to="page_4">Page 4</Link></li>
+            <li className="dashboard-link"><NavLink to="services">services</NavLink></li>
+            <li className="dashboard-link"><NavLink to="support">support</NavLink></li>
+            <li className="dashboard-link"><NavLink to="configure">configure</NavLink></li>
+            <li className="dashboard-link"><NavLink to="metrics">metrics</NavLink></li>
         </ul>
     )
 }
 
-function DashboardHeader({user, setCurrentUser, addMessage}){
-    const [loading, setLoading] = useState(null)
+function DashboardHeader({user, setCurrentUser, addMessage, loading, setLoading}){
     const navigate = useNavigate()
     const logout = (e) => {
         e.preventDefault()
@@ -60,15 +64,15 @@ function DashboardHeader({user, setCurrentUser, addMessage}){
     return (
         <div className="row">
             <div className="col-6">
-                <h1 className="bold dashboard-link">
+                <h1 className="bold dashboard-link" style={{marginBottom:"5px"}}>
                     <Link to="">
-                        Dashboard
+                        Applogin
                     </Link>
                 </h1>
                 <Navbar/>
             </div>
             <div className="col-6">
-                <div className="text-right pad-10-top">
+                <div className="text-right pad-10-top"  style={{marginBottom:"5px"}}>
                     {
                         loading 
                         ? <><span>{loading}</span><TailSpin height={30} width={30} wrapperClass="loader-inline-wrapper"/></>
@@ -90,6 +94,7 @@ function DashboardHeader({user, setCurrentUser, addMessage}){
 }
 
 function Dashboard(props){
+    const [loading, setLoading] = useState(null)
     const [addMessage, closeMessage, messages] = useMessageOutlet()
     return (
         <>
@@ -105,45 +110,52 @@ function Dashboard(props){
                             <div className="container-fluid">
                                 <DashboardHeader user={props.currentUser}
                                     addMessage={addMessage}
+                                    loading={loading}
+                                    setLoading={setLoading}
                                     setCurrentUser={props.setCurrentUser}/>
                                 <Routes>
                                     <Route path="/"
                                         element={
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h2>Main page</h2>
+                                                    <Main setLoading={setLoading}
+                                                        addMessage={addMessage}/>
                                                 </div>
                                             </div>
                                         }/>
-                                    <Route path="/page_1"
+                                    <Route path="/services"
                                         element={
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h2>Page 1</h2>
+                                                    <Services setLoading={setLoading}
+                                                        addMessage={addMessage}/>
                                                 </div>
                                             </div>
                                         }/>
-                                    <Route path="/page_2"
+                                    <Route path="/support"
                                         element={
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h2>Page 2</h2>
+                                                    <Support setLoading={setLoading}
+                                                        addMessage={addMessage}/>
                                                 </div>
                                             </div>
                                         }/>
-                                    <Route path="/page_3"
+                                    <Route path="/configure"
                                         element={
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h2>Page 3</h2>
+                                                    <Configure setLoading={setLoading}
+                                                        addMessage={addMessage}/>
                                                 </div>
                                             </div>
                                         }/>
-                                    <Route path="/page_4"
+                                    <Route path="/metrics"
                                         element={
                                             <div className="row">
                                                 <div className="col-12">
-                                                    <h2>Page 4</h2>
+                                                    <Metrics setLoading={setLoading}
+                                                        addMessage={addMessage}/>
                                                 </div>
                                             </div>
                                         }/>

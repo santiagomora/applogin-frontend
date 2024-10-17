@@ -47,16 +47,14 @@ const useFormHandler = (url, validation, setLoading, onSuccess, onError) => {
                     : {}
             })
             .then((response) => {
-                console.log(response)
-                setLoading(false)
+                setLoading(null)
                 changeForm(['', {}])
                 if(onSuccess){
                     onSuccess(response)
                 }
             })
             .catch(({response}) => {
-                console.log(response)
-                setLoading(false)
+                setLoading(null)
                 const {data} = response
                 if(data.type == 'validation_error'){
                     changeErrors(data.detail)
