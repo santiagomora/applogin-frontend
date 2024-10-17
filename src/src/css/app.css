@@ -1,0 +1,101 @@
+body {
+    background-color: white
+}
+
+h1 {
+    color: #282C34;
+}
+
+input {
+    width: 100%;
+    border: 0;
+    border-bottom: solid 2px #DEE0E2;
+    padding: 5px;
+}
+
+input:focus {
+    outline:none;
+}
+
+.input-error{
+    border-bottom: solid 2px #DF3746;
+}
+
+label {
+    color: #2D82BB;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.validation-error{
+    color: #DF3746;
+    text-align: right;
+    font-size: 14px;
+}
+
+.login-container, .register-container, .dashboard-container{
+    margin-top: 10vh;
+}
+
+.separator {
+    border-top: solid 2px #282C34;
+    border-bottom: solid 2px #282C34;
+    border-radius: 2px;
+    margin: 15px 0px ;
+}
+
+.pad-10-top {
+    padding-top:10px;
+}
+
+.text-right{
+    text-align: right
+}
+
+.pad-0-h {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.loader-inline-wrapper{
+    display: inline-block !important;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav {
+    
+}
+
+.nav li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.dashboard-link, .dashboard-link a{
+    font-weight: bold;
+    text-decoration: none !important;
+    color: #2D82BB;
+}
+
+.alert-heading {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.alert .btn-close {
+    font-size: 14px;
+}
+
+.alert {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.alert-detail {
+    max-height:100px;
+    overflow: scroll;
+    font-size: 14px;
+}

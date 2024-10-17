@@ -1,0 +1,12 @@
+services:
+    applogin:
+        container_name: frontend-applogin
+        restart: always
+        build:
+            context: ./build/applogin
+        volumes:
+            - "./src/:/home/node"
+        ports:
+            - '3000:3000'
+volumes:
+    src:
